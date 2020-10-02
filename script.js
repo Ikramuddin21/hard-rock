@@ -33,12 +33,18 @@ const getLyrics = () => {
     .then(res => res.json())
     .then(data => {
         console.log(data);
-        const lyrics_show = document.querySelector('.lyrics');
+        if (data.lyrics === '') {
+            alert('Sorry, lyrics not found.');
+        }
+        else {
+            const lyrics_show = document.querySelector('.lyrics');
 
-        displayShowing(lyrics_show, '.display');
+            displayShowing(lyrics_show, '.display');
 
-        lyrics_show.innerHTML = `<h3 style='text-align: center;'>${title}</h3>
-        <pre class='lyricsShow'>${data.lyrics}</pre>`;
+            lyrics_show.innerHTML = `<h3 style='text-align: center;'>${title}</h3>
+            <pre class='lyricsShow'>${data.lyrics}</pre>`;    
+        }
+        
     })
 }
 
